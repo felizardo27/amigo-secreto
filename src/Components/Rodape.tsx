@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useListaParticipantes } from "../state/hook/useListaParticipantes";
+import styles from './Rodape.module.scss';
 
 const Rodape = () => {
 
@@ -12,13 +13,15 @@ const Rodape = () => {
     };
 
     return (
-        <footer>
-            <button 
+        <footer className={styles.rodape}>
+            <button
+            className={styles.botao} 
             disabled={participantes.length < 3} 
             onClick={iniciar}
             >
                 Iniciar brincadeira!
-                </button>
+            </button>
+            <img src="/imagens/sacolas.png" alt="Sacolas de compras" />
         </footer>
     );
 };

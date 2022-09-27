@@ -1,0 +1,44 @@
+.rodape {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media (max-width: 800px) {
+        flex-direction: column;
+    }
+
+    .botao {
+        width: 350px;
+        height: 80px;
+        background-color: #FE652B;
+        color: #fff;
+        border-radius: 45px;
+        box-shadow: 2px 2px 0px 1px #000000;
+        font-size: 20px;
+        cursor: pointer;
+
+        &:disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        &:hover {
+            background-color: #f7845a;
+        }
+
+        &:active {
+            box-shadow: 0px 0px 0px 0px #000000;
+        }
+
+        @media (max-width: 800px) {
+            width: 220px;
+            margin: 32px 0;
+        }
+    }
+
+    img {
+        @media (max-width: 800px) {
+            margin-top: 32px;
+        }
+    }
+}
