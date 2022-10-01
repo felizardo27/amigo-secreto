@@ -1,17 +1,42 @@
+import { useState } from "react";
 import { useListaParticipantes } from "../state/hook/useListaParticipantes";
+import { useResultadoDoSorteio } from "../state/hook/useResultadoDoSorteio";
+import styles from './sorteio.module.scss';
+
 
 const Sorteio = () => {
 
     const participantes = useListaParticipantes();
 
+    const [participanteDaVez, setParticipanteDaVez] = useState('');
+    const [amigoSecreto, setAmigoSecreto] = useState('');
+
+    const resultado = useResultadoDoSorteio();
+
+    const sortear = (evento: React.FormEvent<HTMLFormElement>) => {
+        evento.preventDefault();
+        if (resultado.has(participanteDaVez)) {
+            setAmigoSecreto(resultado.get(participanteDaVez)!);
+        }
+    }
+
     return (
         <section>
-            <form>
-                <select name="participanteDaVez" id="ParticipanteDaVez">
+            <form onSubmit={sortear}>
+                <select 
+                    required
+                    name="participanteDaVez" 
+                    id="ParticipanteDaVez"
+                    placeholder="Selecione o seu nome"
+                    value={participanteDaVez}
+                    onChange={evento => setParticipanteDaVez(evento.target.value)}
+                >
                     {participantes.map(participante => 
                         <option key={participante}>{participante}</option>
                         )}
                 </select>
+                <button>Sortear</button>
+                {amigoSecreto && <p role="alert">{amigoSecreto}</p>}
             </form>
         </section>
     );
